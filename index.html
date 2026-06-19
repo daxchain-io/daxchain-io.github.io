@@ -3,34 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DaxChain | Daxie CLI and NZT-48</title>
+    <title>Daxchain | Daxie and NZT-48</title>
     <meta
       name="description"
-      content="DaxChain is a small blockchain lab for Daxie CLI, the agent-first Ethereum wallet, and NZT-48, an experimental ERC20."
+      content="Daxchain is a blockchain lab for on-chain tools, including Daxie and NZT-48."
     >
-    <meta property="og:title" content="DaxChain | Daxie CLI and NZT-48">
+    <meta property="og:title" content="Daxchain | Daxie and NZT-48">
     <meta
       property="og:description"
-      content="Agent-first Ethereum wallet tooling and an experimental ERC20 from DaxChain."
+      content="A blockchain lab building Daxie and NZT-48."
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://daxchain.io">
     <style>
       :root {
         color-scheme: dark;
-        --bg: #050609;
-        --panel: rgba(12, 15, 18, 0.84);
-        --panel-strong: #101417;
-        --fg: #f8fbf2;
-        --muted: #a8b2a6;
-        --quiet: #738070;
-        --line: rgba(219, 255, 201, 0.16);
-        --green: #7dff8f;
-        --cyan: #58e7ff;
-        --amber: #ffcd68;
-        --pink: #ff6fae;
-        --red: #ff5f5f;
-        --shadow: rgba(0, 0, 0, 0.42);
+        --bg: #050607;
+        --fg: #f6f8ed;
+        --muted: #9aa593;
+        --quiet: #687263;
+        --line: rgba(228, 255, 210, 0.14);
+        --green: #8cff99;
+        --blue: #62d7ff;
+        --yellow: #f7d56b;
+        --ink: rgba(5, 6, 7, 0.72);
+        --panel: rgba(13, 16, 14, 0.72);
         --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       }
@@ -39,18 +36,17 @@
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         min-width: 320px;
+        min-height: 100vh;
         margin: 0;
         background:
-          linear-gradient(rgba(125, 255, 143, 0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(88, 231, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(135deg, #050609 0%, #080b0c 42%, #0f0c12 100%);
-        background-size: 44px 44px, 44px 44px, auto;
+          linear-gradient(rgba(140, 255, 153, 0.032) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(98, 215, 255, 0.026) 1px, transparent 1px),
+          radial-gradient(circle at 18% 20%, rgba(140, 255, 153, 0.13), transparent 30rem),
+          radial-gradient(circle at 84% 76%, rgba(247, 213, 107, 0.09), transparent 28rem),
+          #050607;
+        background-size: 42px 42px, 42px 42px, auto, auto, auto;
         color: var(--fg);
         font-family: var(--font);
       }
@@ -62,838 +58,410 @@
         pointer-events: none;
         content: "";
         background:
-          linear-gradient(120deg, rgba(255, 205, 104, 0.09), transparent 28%),
-          linear-gradient(250deg, rgba(255, 111, 174, 0.08), transparent 36%),
-          linear-gradient(180deg, transparent 0%, rgba(5, 6, 9, 0.88) 78%);
+          linear-gradient(180deg, rgba(5, 6, 7, 0) 0%, rgba(5, 6, 7, 0.72) 78%),
+          linear-gradient(115deg, transparent 0 38%, rgba(98, 215, 255, 0.055) 38% 39%, transparent 39% 100%);
       }
 
       a {
         color: inherit;
       }
 
-      .site-shell {
-        width: min(1180px, calc(100vw - 32px));
+      .shell {
+        width: min(1120px, calc(100vw - 32px));
         margin: 0 auto;
       }
 
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        border-bottom: 1px solid var(--line);
-        background: rgba(5, 6, 9, 0.86);
-        backdrop-filter: blur(16px);
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      header {
+        padding: 26px 0;
       }
 
       .nav {
-        min-height: 72px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 18px;
       }
 
       .brand {
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        color: var(--fg);
-        font-weight: 800;
         text-decoration: none;
       }
 
-      .brand-mark {
+      .mark {
         width: 38px;
         height: 38px;
         display: grid;
         place-items: center;
-        border: 1px solid rgba(125, 255, 143, 0.42);
+        border: 1px solid rgba(140, 255, 153, 0.48);
         border-radius: 8px;
-        background: #09100c;
-        box-shadow: inset 0 0 18px rgba(125, 255, 143, 0.12);
+        background: rgba(140, 255, 153, 0.08);
         color: var(--green);
         font-family: var(--mono);
-        font-size: 0.95rem;
-        letter-spacing: 0;
+        font-size: 0.92rem;
+        font-weight: 800;
       }
 
-      .brand-text {
+      .brand-word {
         display: grid;
-        gap: 2px;
+        gap: 3px;
+      }
+
+      .brand-word strong {
+        font-size: 1rem;
         line-height: 1;
       }
 
-      .brand-text span:first-child {
-        font-size: 1rem;
-      }
-
-      .brand-text span:last-child {
+      .brand-word span {
         color: var(--quiet);
         font-family: var(--mono);
         font-size: 0.72rem;
-        font-weight: 600;
+        font-weight: 700;
+        line-height: 1;
       }
 
-      .nav-links {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .nav-link,
-      .button {
-        min-height: 42px;
+      .github-org {
+        min-height: 40px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 0 14px;
+        background: rgba(255, 255, 255, 0.025);
         color: var(--fg);
         font-size: 0.88rem;
         font-weight: 750;
         text-decoration: none;
         white-space: nowrap;
-        transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
       }
 
-      .nav-link {
-        background: rgba(255, 255, 255, 0.025);
-      }
-
-      .button {
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .button.primary {
-        border-color: rgba(125, 255, 143, 0.48);
-        background: #112017;
-        color: #edffef;
-      }
-
-      .button.secondary {
-        border-color: rgba(88, 231, 255, 0.36);
-      }
-
-      .nav-link:hover,
-      .button:hover {
-        border-color: rgba(248, 251, 242, 0.42);
-        background: rgba(255, 255, 255, 0.075);
-        transform: translateY(-1px);
+      main {
+        display: grid;
+        align-items: center;
+        padding: 24px 0 60px;
       }
 
       .hero {
-        min-height: calc(100vh - 72px);
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(360px, 0.86fr);
-        align-items: center;
-        gap: 42px;
-        padding: 68px 0 84px;
+        grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.78fr);
+        gap: clamp(30px, 7vw, 82px);
+        align-items: end;
       }
 
-      .eyebrow {
+      .kicker {
         width: fit-content;
         margin: 0 0 18px;
-        border: 1px solid rgba(255, 205, 104, 0.42);
+        border: 1px solid rgba(247, 213, 107, 0.34);
         border-radius: 999px;
-        padding: 7px 12px;
-        background: rgba(255, 205, 104, 0.08);
-        color: #ffe6a3;
+        padding: 7px 11px;
+        background: rgba(247, 213, 107, 0.07);
+        color: #ffe79a;
         font-family: var(--mono);
-        font-size: 0.78rem;
-        font-weight: 700;
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
+        font-size: 0.76rem;
+        font-weight: 800;
       }
 
       h1 {
         max-width: 820px;
-        margin-bottom: 22px;
-        font-size: clamp(3.15rem, 8.4vw, 7.4rem);
-        line-height: 0.91;
+        margin: 0;
+        font-size: clamp(4.1rem, 12vw, 9.4rem);
+        line-height: 0.82;
         letter-spacing: 0;
       }
 
-      .hero-copy {
-        max-width: 620px;
-        margin-bottom: 0;
+      .intro {
+        max-width: 590px;
+        margin: 28px 0 0;
         color: var(--muted);
-        font-size: clamp(1.06rem, 2vw, 1.28rem);
-        line-height: 1.65;
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        line-height: 1.7;
       }
 
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 30px;
-      }
-
-      .chain-visual {
+      .lab-card {
         position: relative;
-        display: grid;
-        gap: 16px;
+        min-height: 410px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        padding: 16px;
         background:
-          linear-gradient(180deg, rgba(16, 20, 23, 0.96), rgba(8, 10, 11, 0.96)),
-          repeating-linear-gradient(90deg, rgba(125, 255, 143, 0.05) 0 1px, transparent 1px 26px);
-        box-shadow: 0 24px 70px var(--shadow);
+          linear-gradient(180deg, rgba(15, 20, 17, 0.84), rgba(5, 6, 7, 0.78)),
+          repeating-linear-gradient(90deg, rgba(140, 255, 153, 0.04) 0 1px, transparent 1px 24px);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
         overflow: hidden;
       }
 
-      .chain-visual::before {
+      .lab-card::before {
         position: absolute;
-        inset: 0;
-        pointer-events: none;
+        inset: 28px;
+        border: 1px solid rgba(140, 255, 153, 0.18);
+        border-radius: 8px;
         content: "";
-        background: linear-gradient(90deg, transparent, rgba(125, 255, 143, 0.1), transparent);
-        transform: translateX(-100%);
-        animation: scan 5.5s ease-in-out infinite;
       }
 
-      @keyframes scan {
-        0%,
-        18% {
-          transform: translateX(-100%);
-        }
-        72%,
-        100% {
-          transform: translateX(100%);
-        }
-      }
-
-      .terminal {
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        background: #050607;
-        overflow: hidden;
-      }
-
-      .terminal-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        min-height: 42px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 0 14px;
-        color: var(--quiet);
-        font-family: var(--mono);
-        font-size: 0.78rem;
-      }
-
-      .dots {
-        display: inline-flex;
-        gap: 6px;
-      }
-
-      .dots span {
-        width: 9px;
-        height: 9px;
+      .node {
+        position: absolute;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        background: var(--red);
-      }
-
-      .dots span:nth-child(2) {
-        background: var(--amber);
-      }
-
-      .dots span:nth-child(3) {
         background: var(--green);
+        box-shadow: 0 0 26px rgba(140, 255, 153, 0.8);
       }
 
-      .terminal pre {
-        margin: 0;
-        padding: 18px;
-        color: #d9fbe0;
-        font-family: var(--mono);
-        font-size: clamp(0.75rem, 1.6vw, 0.9rem);
-        line-height: 1.65;
-        white-space: pre-wrap;
+      .node.one {
+        top: 28%;
+        left: 24%;
       }
 
-      .command {
-        color: var(--green);
+      .node.two {
+        right: 25%;
+        bottom: 30%;
+        background: var(--blue);
+        box-shadow: 0 0 26px rgba(98, 215, 255, 0.72);
       }
 
-      .value {
-        color: var(--cyan);
+      .trace {
+        position: absolute;
+        top: 35%;
+        left: 27%;
+        width: 47%;
+        height: 1px;
+        background: linear-gradient(90deg, var(--green), var(--blue));
+        transform: rotate(31deg);
+        transform-origin: left center;
       }
 
-      .warn {
-        color: var(--amber);
-      }
-
-      .chain-row {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        align-items: center;
-        gap: 10px;
-      }
-
-      .block {
-        min-height: 78px;
-        display: grid;
-        align-content: center;
-        gap: 5px;
-        border: 1px solid rgba(125, 255, 143, 0.22);
-        border-radius: 8px;
-        padding: 10px;
-        background: rgba(125, 255, 143, 0.055);
-        font-family: var(--mono);
-      }
-
-      .block:nth-child(2),
-      .block:nth-child(4) {
-        border-color: rgba(88, 231, 255, 0.2);
-        background: rgba(88, 231, 255, 0.045);
-      }
-
-      .block span:first-child {
-        color: var(--quiet);
-        font-size: 0.68rem;
-      }
-
-      .block span:last-child {
-        overflow: hidden;
-        color: var(--fg);
-        font-size: 0.82rem;
-        font-weight: 800;
-        text-overflow: ellipsis;
-      }
-
-      .product-band {
-        border-top: 1px solid var(--line);
-        background: rgba(5, 6, 9, 0.38);
-      }
-
-      .section-head {
+      .lab-label {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 26px;
         display: flex;
-        align-items: end;
         justify-content: space-between;
-        gap: 24px;
-        padding: 78px 0 28px;
-      }
-
-      .section-kicker {
-        margin-bottom: 12px;
-        color: var(--amber);
+        gap: 18px;
+        color: var(--quiet);
         font-family: var(--mono);
-        font-size: 0.78rem;
-        font-weight: 750;
+        font-size: 0.72rem;
+        font-weight: 800;
         text-transform: uppercase;
       }
 
-      h2 {
-        margin-bottom: 0;
-        font-size: clamp(2rem, 5vw, 4.7rem);
-        line-height: 0.96;
-        letter-spacing: 0;
-      }
-
-      .section-head p {
-        max-width: 430px;
-        margin-bottom: 4px;
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.65;
-      }
-
-      .product-grid {
+      .projects {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-        padding-bottom: 88px;
+        gap: 16px;
+        margin-top: 44px;
       }
 
-      .product {
-        min-height: 100%;
+      .project {
+        min-height: 236px;
         display: grid;
-        grid-template-rows: auto 1fr auto;
-        gap: 24px;
+        align-content: space-between;
+        gap: 28px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        padding: clamp(20px, 3vw, 30px);
+        padding: clamp(22px, 4vw, 34px);
         background: var(--panel);
-        box-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
+        text-decoration: none;
+        transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
       }
 
-      .product-title {
-        display: flex;
-        align-items: start;
-        justify-content: space-between;
-        gap: 18px;
+      .project:hover {
+        border-color: rgba(246, 248, 237, 0.42);
+        background: rgba(18, 23, 20, 0.86);
+        transform: translateY(-2px);
       }
 
-      h3 {
-        margin-bottom: 10px;
-        font-size: clamp(1.55rem, 3vw, 2.35rem);
-        line-height: 1;
+      .project h2 {
+        margin: 0 0 14px;
+        font-size: clamp(2.25rem, 6vw, 4.5rem);
+        line-height: 0.9;
         letter-spacing: 0;
       }
 
-      .product-title p {
-        margin-bottom: 0;
+      .project p {
+        max-width: 30rem;
+        margin: 0;
         color: var(--muted);
-        line-height: 1.65;
+        font-size: clamp(1rem, 1.7vw, 1.12rem);
+        line-height: 1.62;
       }
 
-      .badge {
-        flex: 0 0 auto;
-        border: 1px solid rgba(125, 255, 143, 0.32);
-        border-radius: 999px;
-        padding: 7px 10px;
-        color: var(--green);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 800;
-      }
-
-      .feature-list {
-        display: grid;
-        gap: 11px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .feature-list li {
-        display: grid;
-        grid-template-columns: 13px minmax(0, 1fr);
-        gap: 12px;
-        color: #d6dfd1;
-        line-height: 1.55;
-      }
-
-      .feature-list li::before {
-        width: 8px;
-        height: 8px;
-        margin-top: 8px;
-        border-radius: 2px;
-        background: var(--cyan);
-        content: "";
-        box-shadow: 0 0 18px rgba(88, 231, 255, 0.5);
-      }
-
-      .product.nzt .feature-list li::before {
-        background: var(--pink);
-        box-shadow: 0 0 18px rgba(255, 111, 174, 0.45);
-      }
-
-      .snippet {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        background: rgba(0, 0, 0, 0.28);
-        overflow: hidden;
-      }
-
-      .snippet-label {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 10px 12px;
-        color: var(--quiet);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 800;
-      }
-
-      .snippet pre {
-        margin: 0;
-        padding: 14px;
-        color: #e8f5df;
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        line-height: 1.58;
-        white-space: pre-wrap;
-      }
-
-      .product-actions {
+      .project-link {
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .contract-band {
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        background:
-          linear-gradient(90deg, rgba(125, 255, 143, 0.08), transparent 28%),
-          linear-gradient(270deg, rgba(255, 111, 174, 0.07), transparent 32%),
-          rgba(13, 15, 13, 0.82);
-      }
-
-      .contract {
-        display: grid;
-        grid-template-columns: 0.72fr 1fr;
-        gap: 30px;
         align-items: center;
-        padding: 54px 0;
-      }
-
-      .contract h2 {
-        font-size: clamp(1.8rem, 4vw, 3.4rem);
-      }
-
-      .contract p {
-        margin: 16px 0 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .address-grid {
-        display: grid;
-        gap: 10px;
-      }
-
-      .address {
-        display: grid;
-        grid-template-columns: 130px minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        padding: 12px;
-        background: rgba(0, 0, 0, 0.28);
-      }
-
-      .address span {
-        color: var(--quiet);
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        font-weight: 800;
-      }
-
-      .address code {
-        min-width: 0;
-        overflow: hidden;
+        justify-content: space-between;
+        gap: 16px;
         color: var(--fg);
         font-family: var(--mono);
-        font-size: 0.82rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .address a {
-        color: var(--cyan);
-        font-size: 0.86rem;
+        font-size: 0.8rem;
         font-weight: 800;
-        text-decoration: none;
       }
 
-      .site-footer {
-        padding: 34px 0;
+      .project-link span:first-child {
+        min-width: 0;
+        overflow-wrap: anywhere;
       }
 
-      .footer-inner {
+      .project-link span:last-child {
+        flex: 0 0 auto;
+        color: var(--green);
+      }
+
+      .project.nzt .project-link span:last-child {
+        color: var(--blue);
+      }
+
+      footer {
+        padding: 24px 0 30px;
+        color: var(--quiet);
+        font-size: 0.88rem;
+      }
+
+      .footer-line {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 18px;
-        color: var(--quiet);
-        font-size: 0.9rem;
       }
 
-      .footer-links {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .footer-links a {
+      .footer-line a {
         color: var(--fg);
         font-weight: 700;
-        text-decoration-color: rgba(125, 255, 143, 0.7);
+        text-decoration-color: rgba(140, 255, 153, 0.7);
         text-underline-offset: 0.24em;
       }
 
-      @media (max-width: 900px) {
-        .nav {
-          min-height: auto;
-          flex-direction: column;
-          align-items: stretch;
-          padding: 14px 0;
-        }
-
-        .nav-links {
-          justify-content: stretch;
-        }
-
-        .nav-link {
-          flex: 1 1 136px;
-        }
-
-        .hero,
-        .contract {
-          grid-template-columns: 1fr;
-        }
-
+      @media (max-width: 880px) {
         .hero {
-          min-height: auto;
-          padding-top: 44px;
-        }
-
-        .product-grid {
           grid-template-columns: 1fr;
+          align-items: start;
         }
 
-        .section-head {
-          align-items: start;
-          flex-direction: column;
+        .lab-card {
+          min-height: 260px;
+        }
+
+        .projects {
+          grid-template-columns: 1fr;
         }
       }
 
-      @media (max-width: 640px) {
-        .site-shell {
-          width: min(100% - 22px, 1180px);
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 22px, 1120px);
         }
 
-        .hero {
-          gap: 28px;
-          padding-bottom: 56px;
+        header {
+          padding-top: 16px;
         }
 
-        .hero-actions .button,
-        .product-actions .button {
-          width: 100%;
-        }
-
-        .chain-visual {
-          padding: 12px;
-        }
-
-        .chain-row {
-          grid-template-columns: 1fr;
-        }
-
-        .block {
-          min-height: 54px;
-        }
-
-        .product {
-          padding: 18px;
-        }
-
-        .product-title {
-          flex-direction: column;
-        }
-
-        .address {
-          grid-template-columns: 1fr;
-          gap: 7px;
-        }
-
-        .footer-inner {
+        .nav,
+        .footer-line {
           align-items: flex-start;
           flex-direction: column;
         }
-      }
 
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
+        main {
+          padding-top: 20px;
         }
 
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
+        .github-org {
+          width: 100%;
+        }
+
+        .lab-card {
+          min-height: 220px;
+        }
+
+        .project {
+          min-height: 220px;
         }
       }
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <nav class="site-shell nav" aria-label="Primary navigation">
-        <a class="brand" href="#top" aria-label="DaxChain home">
-          <span class="brand-mark">DX</span>
-          <span class="brand-text">
-            <span>DaxChain</span>
-            <span>on-chain tools</span>
-          </span>
-        </a>
-        <div class="nav-links">
-          <a class="nav-link" href="#daxie">Daxie CLI</a>
-          <a class="nav-link" href="#nzt48">NZT-48</a>
-          <a class="nav-link" href="https://github.com/daxchain-io/daxie">Daxie GitHub</a>
-          <a class="nav-link" href="https://github.com/daxchain-io/nzt48">NZT-48 GitHub</a>
-        </div>
-      </nav>
-    </header>
+    <div class="page">
+      <header>
+        <nav class="shell nav" aria-label="Primary navigation">
+          <a class="brand" href="/" aria-label="Daxchain home">
+            <span class="mark">DX</span>
+            <span class="brand-word">
+              <strong>Daxchain</strong>
+              <span>on-chain tools</span>
+            </span>
+          </a>
+          <a class="github-org" href="https://github.com/daxchain-io">GitHub org</a>
+        </nav>
+      </header>
 
-    <main id="top">
-      <section class="site-shell hero" aria-labelledby="hero-title">
-        <div>
-          <p class="eyebrow">daxchain.io</p>
-          <h1 id="hero-title">Daxie CLI and NZT-48</h1>
-          <p class="hero-copy">
-            A compact blockchain lab: one agent-first Ethereum wallet for serious automation,
-            and one weird ERC20 that gives every untouched address something to think about.
-          </p>
-          <div class="hero-actions" aria-label="Project links">
-            <a class="button primary" href="https://github.com/daxchain-io/daxie">
-              Daxie GitHub
-            </a>
-            <a class="button secondary" href="https://github.com/daxchain-io/nzt48">
-              NZT-48 GitHub
-            </a>
-          </div>
-        </div>
-
-        <div class="chain-visual" aria-label="DaxChain terminal and block visual">
-          <div class="terminal">
-            <div class="terminal-top">
-              <span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>
-              <span>daxchain shell</span>
-            </div>
-            <pre><span class="command">$ daxie policy set</span> --max-tx 0.1eth --max-day 0.5eth
-<span class="value">policy:</span> sealed guardrails active
-
-<span class="command">$ cast call</span> 0x30a5...f10d "balanceOf(address)"
-<span class="value">balance:</span> 5,000 NZT-48
-<span class="warn">supply:</span> virtual until materialized</pre>
-          </div>
-          <div class="chain-row" aria-hidden="true">
-            <div class="block"><span>block</span><span>0x16f8</span></div>
-            <div class="block"><span>tool</span><span>daxie</span></div>
-            <div class="block"><span>policy</span><span>sealed</span></div>
-            <div class="block"><span>token</span><span>NZT-48</span></div>
-            <div class="block"><span>repo</span><span>public</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="product-band" aria-labelledby="projects-title">
-        <div class="site-shell">
-          <div class="section-head">
+      <main>
+        <section class="shell" aria-labelledby="hero-title">
+          <div class="hero">
             <div>
-              <p class="section-kicker">Projects</p>
-              <h2 id="projects-title">Two artifacts, same chain energy.</h2>
+              <p class="kicker">blockchain lab</p>
+              <h1 id="hero-title">On-chain tools.</h1>
+              <p class="intro">
+                Daxchain is a small lab for practical Ethereum tooling and strange
+                token experiments. Two public projects are on the bench right now.
+              </p>
             </div>
-            <p>
-              Daxie is for controlled agent spending. NZT-48 is for poking at ERC20
-              assumptions in public.
-            </p>
-          </div>
 
-          <div class="product-grid">
-            <article class="product" id="daxie" aria-labelledby="daxie-title">
-              <div class="product-title">
-                <div>
-                  <h3 id="daxie-title">Daxie CLI</h3>
-                  <p>
-                    An agent-first Ethereum wallet in Go: CLI, MCP server, local custody,
-                    JSON workflows, and spend-limit guardrails.
-                  </p>
-                </div>
-                <span class="badge">wallet</span>
+            <div class="lab-card" aria-hidden="true">
+              <span class="node one"></span>
+              <span class="trace"></span>
+              <span class="node two"></span>
+              <div class="lab-label">
+                <span>0x lab</span>
+                <span>public repos</span>
               </div>
-
-              <ul class="feature-list">
-                <li>Non-interactive flags, environment variables, stdin secrets, and JSON output.</li>
-                <li>One wallet core underneath both the command line and the MCP server.</li>
-                <li>Operator-set policy limits sit below the agent-facing interface.</li>
-              </ul>
-
-              <div class="snippet" aria-label="Daxie install command">
-                <div class="snippet-label">install</div>
-                <pre>brew install --cask daxchain-io/tap/daxie</pre>
-              </div>
-
-              <div class="product-actions">
-                <a class="button primary" href="https://github.com/daxchain-io/daxie">
-                  GitHub repo
-                </a>
-                <a class="button" href="https://github.com/daxchain-io/daxie/releases">
-                  Releases
-                </a>
-              </div>
-            </article>
-
-            <article class="product nzt" id="nzt48" aria-labelledby="nzt-title">
-              <div class="product-title">
-                <div>
-                  <h3 id="nzt-title">NZT-48</h3>
-                  <p>
-                    An experimental ERC20 where ordinary untouched addresses appear to start
-                    with 5,000 NZT-48.
-                  </p>
-                </div>
-                <span class="badge">erc20</span>
-              </div>
-
-              <ul class="feature-list">
-                <li>Fresh accounts report a virtual balance before anything is materialized.</li>
-                <li>Transfers wake balances into real supply when accounts interact.</li>
-                <li>A toy coin for testing wallets, indexers, contracts, and human assumptions.</li>
-              </ul>
-
-              <div class="snippet" aria-label="NZT-48 balance behavior">
-                <div class="snippet-label">core trick</div>
-                <pre>balanceOf(alice) -&gt; 5,000 NZT-48
-totalSupply()    -&gt; 0 NZT-48</pre>
-              </div>
-
-              <div class="product-actions">
-                <a class="button primary" href="https://github.com/daxchain-io/nzt48">
-                  GitHub repo
-                </a>
-                <a class="button" href="https://github.com/daxchain-io/nzt48/tree/main/deployments">
-                  Deployments
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="contract-band" aria-labelledby="contracts-title">
-        <div class="site-shell contract">
-          <div>
-            <p class="section-kicker">NZT-48 contracts</p>
-            <h2 id="contracts-title">Same address, two networks.</h2>
-            <p>
-              The canonical NZT-48 deployment lives at the same contract address on
-              Ethereum Mainnet and Sepolia.
-            </p>
-          </div>
-          <div class="address-grid">
-            <div class="address">
-              <span>Mainnet</span>
-              <code>0x30a580e9fcbdec9784122963cc3762afba57f10d</code>
-              <a href="https://etherscan.io/address/0x30a580e9fcbdec9784122963cc3762afba57f10d">Etherscan</a>
-            </div>
-            <div class="address">
-              <span>Sepolia</span>
-              <code>0x30a580e9fcbdec9784122963cc3762afba57f10d</code>
-              <a href="https://sepolia.etherscan.io/address/0x30a580e9fcbdec9784122963cc3762afba57f10d">Etherscan</a>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
 
-    <footer class="site-footer">
-      <div class="site-shell footer-inner">
-        <span>DaxChain publishes from GitHub Pages.</span>
-        <div class="footer-links">
-          <a href="https://github.com/daxchain-io">GitHub org</a>
-          <a href="https://github.com/daxchain-io/daxchain-io.github.io">Website repo</a>
-          <a href="https://api.daxchain.io">API</a>
+          <div class="projects" aria-label="Daxchain projects">
+            <a class="project" href="https://github.com/daxchain-io/daxie">
+              <span>
+                <h2>Daxie</h2>
+                <p>
+                  An agent-first Ethereum wallet: local custody, JSON-first command
+                  line workflows, MCP support, and policy guardrails for automated spend.
+                </p>
+              </span>
+              <span class="project-link">
+                <span>github.com/daxchain-io/daxie</span>
+                <span>open repo -&gt;</span>
+              </span>
+            </a>
+
+            <a class="project nzt" href="https://github.com/daxchain-io/nzt48">
+              <span>
+                <h2>NZT-48</h2>
+                <p>
+                  An experimental ERC20 where untouched addresses appear to have
+                  a balance, built to poke wallet, indexer, and contract assumptions.
+                </p>
+              </span>
+              <span class="project-link">
+                <span>github.com/daxchain-io/nzt48</span>
+                <span>open repo -&gt;</span>
+              </span>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="shell footer-line">
+          <span>daxchain.io</span>
+          <a href="https://github.com/daxchain-io/daxchain-io.github.io">Website source</a>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
