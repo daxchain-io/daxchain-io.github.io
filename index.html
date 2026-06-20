@@ -3,18 +3,77 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daxchain | Daxie and NZT-48</title>
+    <title>Daxchain | EVM Tools, Daxie and NZT-48</title>
     <meta
       name="description"
-      content="Daxchain is a blockchain lab for on-chain tools, including Daxie and NZT-48."
+      content="Daxchain is a blockchain lab for on-chain tools, including EVM Tools, Daxie and NZT-48."
     >
-    <meta property="og:title" content="Daxchain | Daxie and NZT-48">
+    <link rel="canonical" href="https://daxchain.io/">
+    <link rel="icon" href="/logo.png" type="image/png" sizes="any">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <meta name="theme-color" content="#050607">
+    <meta property="og:site_name" content="Daxchain">
+    <meta property="og:title" content="Daxchain | EVM Tools, Daxie and NZT-48">
     <meta
       property="og:description"
-      content="A blockchain lab building Daxie and NZT-48."
+      content="A blockchain lab building EVM Tools, Daxie and NZT-48."
     >
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://daxchain.io">
+    <meta property="og:url" content="https://daxchain.io/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://daxchain.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Daxchain — a blockchain lab building EVM Tools, Daxie and NZT-48.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daxchain | EVM Tools, Daxie and NZT-48">
+    <meta name="twitter:description" content="A blockchain lab building EVM Tools, Daxie and NZT-48.">
+    <meta name="twitter:image" content="https://daxchain.io/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://daxchain.io/#org",
+          "name": "Daxchain",
+          "url": "https://daxchain.io/",
+          "description": "A blockchain lab for practical Ethereum tooling and experimental tokens.",
+          "logo": "https://daxchain.io/logo.png",
+          "sameAs": ["https://github.com/daxchain-io"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://daxchain.io/#website",
+          "url": "https://daxchain.io/",
+          "name": "Daxchain",
+          "publisher": { "@id": "https://daxchain.io/#org" }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "EVM Tools",
+          "description": "A suite of composable command-line tools for observing EVM chains: producers emit newline-delimited JSON, sinks forward it to Kafka, webhooks, or rotating files.",
+          "codeRepository": "https://github.com/daxchain-io/evm-tools",
+          "programmingLanguage": "Go",
+          "author": { "@id": "https://daxchain.io/#org" }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "Daxie",
+          "description": "An agent-first Ethereum wallet: local custody, JSON-first command-line workflows, MCP support, and policy guardrails for automated spend.",
+          "codeRepository": "https://github.com/daxchain-io/daxie",
+          "author": { "@id": "https://daxchain.io/#org" }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "NZT-48",
+          "description": "An experimental ERC-20 where untouched addresses appear to have a balance, built to probe wallet, indexer, and contract assumptions.",
+          "codeRepository": "https://github.com/daxchain-io/nzt48",
+          "author": { "@id": "https://daxchain.io/#org" }
+        }
+      ]
+    }
+    </script>
     <style>
       :root {
         color-scheme: dark;
@@ -96,17 +155,9 @@
       }
 
       .mark {
-        width: 38px;
-        height: 38px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(140, 255, 153, 0.48);
-        border-radius: 8px;
-        background: rgba(140, 255, 153, 0.08);
-        color: var(--green);
-        font-family: var(--mono);
-        font-size: 0.92rem;
-        font-weight: 800;
+        width: 40px;
+        height: 40px;
+        display: block;
       }
 
       .brand-word {
@@ -318,6 +369,10 @@
         color: var(--blue);
       }
 
+      .project.evm .project-link span:last-child {
+        color: var(--yellow);
+      }
+
       footer {
         padding: 24px 0 30px;
         color: var(--quiet);
@@ -391,7 +446,7 @@
       <header>
         <nav class="shell nav" aria-label="Primary navigation">
           <a class="brand" href="/" aria-label="Daxchain home">
-            <span class="mark">DX</span>
+            <img class="mark" src="/logo.png" alt="Daxchain logo" width="40" height="40">
             <span class="brand-word">
               <strong>Daxchain</strong>
               <span>on-chain tools</span>
@@ -409,7 +464,7 @@
               <h1 id="hero-title">On-chain tools.</h1>
               <p class="intro">
                 Daxchain is a small lab for practical Ethereum tooling and strange
-                token experiments. Two public projects are on the bench right now.
+                token experiments. Three public projects are on the bench right now.
               </p>
             </div>
 
@@ -449,6 +504,21 @@
               </span>
               <span class="project-link">
                 <span>github.com/daxchain-io/nzt48</span>
+                <span>open repo -&gt;</span>
+              </span>
+            </a>
+
+            <a class="project evm" href="https://github.com/daxchain-io/evm-tools">
+              <span>
+                <h2>EVM Tools</h2>
+                <p>
+                  A suite of composable CLIs that stream EVM chain activity as
+                  newline-delimited JSON and pipe it into Kafka, webhooks, or
+                  rotating files.
+                </p>
+              </span>
+              <span class="project-link">
+                <span>github.com/daxchain-io/evm-tools</span>
                 <span>open repo -&gt;</span>
               </span>
             </a>

@@ -1,0 +1,74 @@
+# Daxchain
+
+> Daxchain is a small blockchain lab building practical Ethereum tooling and experimental tokens. Every project is open source on GitHub under the daxchain-io organization. The website at https://daxchain.io is a single static page that links to the project repositories.
+
+This file is the full-content companion to https://daxchain.io/llms.txt — it inlines
+the key descriptions so a language model can ingest everything in one request without
+following links. Source of truth for each project is its GitHub repository.
+
+- Website: https://daxchain.io
+- GitHub organization: https://github.com/daxchain-io
+- Website source: https://github.com/daxchain-io/daxchain-io.github.io
+
+---
+
+## EVM Tools
+
+Repository: https://github.com/daxchain-io/evm-tools
+Language: Go
+
+A suite of composable command-line tools for observing EVM chains and moving that data
+into downstream systems. Each tool does one job and speaks a single common data
+contract — newline-delimited JSON (JSONL) on standard output — so they pipe together
+cleanly. stdout carries the data stream; stderr carries human-readable diagnostics, so
+the two never mix.
+
+The suite is five CLIs that share one configuration namespace:
+
+- `evm-stream` — live EVM activity monitoring (contract events and native ETH transfers) emitted as JSONL.
+- `evm-balance` — balance and contract-state polling emitted as JSONL.
+- `evm-sink-kafka` — publish each record to Kafka topics, at-least-once.
+- `evm-sink-webhook` — forward each record over HTTP, at-least-once, with optional filters.
+- `evm-sink-file` — append each record to a rotating local file, at-least-once, with optional gzip compression and filters.
+
+Producers (`evm-stream`, `evm-balance`) emit records; sinks (`evm-sink-kafka`,
+`evm-sink-webhook`, `evm-sink-file`) consume them. The shape is always the same: a
+producer writes JSONL to stdout and a sink reads it from stdin, for example
+`evm-stream run -c chain.toml | evm-sink-kafka run -c chain.toml`. Installation is one
+command for the whole suite via a Homebrew cask (`brew install --cask
+daxchain-io/tap/evm-tools`) or a cosign-verified install script. A multi-stage
+Dockerfile builds an Alpine image containing all five binaries.
+
+## Daxie
+
+Repository: https://github.com/daxchain-io/daxie
+Language: Go
+
+The Ethereum wallet for AI — an agent-first Ethereum CLI wallet with a built-in MCP
+(Model Context Protocol) server. Most Ethereum tooling assumes a human at a terminal
+confirming each action; Daxie inverts that, building for an autonomous agent to hold an
+account and move funds within operator-set limits it cannot raise.
+
+Design highlights: non-interactive flags/env/stdin, `--json` everywhere, deterministic
+exit codes, sealed spend-limit guardrails, and a one-core/two-frontends architecture so
+the CLI and the MCP server traverse the exact same wallet logic and the exact same
+guardrails. Custody in v1 is an encrypted local keystore inside one OS trust domain
+(the same uid as the agent); the project documents that boundary honestly and describes
+a v2 signer-daemon path.
+
+## NZT-48
+
+Repository: https://github.com/daxchain-io/nzt48
+Language: Solidity
+
+An experimental ERC-20 for playing with a strange idea: everybody already has some.
+Most ERC-20s start every address at zero and wait for a transfer in. NZT-48 does the
+opposite — if an ordinary address has no materialized balance, `balanceOf` reports a
+default balance anyway (the default starts at 5,000 NZT-48). That makes it a toy coin
+and a little on-chain oddity, built to poke at the assumptions wallets, indexers,
+contracts, and people make about balances.
+
+It is deployed on Ethereum Mainnet and Sepolia at
+`0x30a580e9fcbdec9784122963cc3762afba57f10d` (these are the canonical deployments; no
+additional canonical deployments are planned). Deployment receipts, ABI, and explorer
+links live in the repository's `deployments/` directory.

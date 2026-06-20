@@ -1,0 +1,20 @@
+# Daxchain
+
+> Daxchain is a small blockchain lab building practical Ethereum tooling and experimental tokens. Every project is open source on GitHub under the daxchain-io organization.
+
+Daxchain favors composable, agent-friendly, command-line-first tools for working with EVM chains. The website at https://daxchain.io is a single static page that links to the project repositories.
+
+## Projects
+
+- [EVM Tools](https://github.com/daxchain-io/evm-tools): A suite of composable command-line tools for observing EVM chains, written in Go. Producers (`evm-stream`, `evm-balance`) emit newline-delimited JSON on stdout; sinks (`evm-sink-kafka`, `evm-sink-webhook`, `evm-sink-file`) consume that stream and forward it to Kafka, webhooks, or rotating local files, at-least-once.
+- [Daxie](https://github.com/daxchain-io/daxie): An agent-first Ethereum wallet with local custody, JSON-first command-line workflows, MCP support, and policy guardrails for automated spend.
+- [NZT-48](https://github.com/daxchain-io/nzt48): An experimental ERC-20 where untouched addresses appear to have a balance, built to probe wallet, indexer, and contract assumptions.
+
+## Links
+
+- [GitHub organization](https://github.com/daxchain-io)
+- [Website source](https://github.com/daxchain-io/daxchain-io.github.io)
+
+## Optional
+
+- [Full version](https://daxchain.io/llms-full.txt): the same overview with the full project descriptions inlined.
