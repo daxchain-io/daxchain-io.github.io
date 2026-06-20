@@ -44,16 +44,16 @@ Dockerfile builds an Alpine image containing all five binaries.
 Repository: https://github.com/daxchain-io/daxie
 Language: Go
 
-The Ethereum wallet for AI — an agent-first Ethereum CLI wallet with a built-in MCP
+The Ethereum wallet for AI — an AI-agent-first Ethereum CLI wallet with a built-in MCP
 (Model Context Protocol) server. Most Ethereum tooling assumes a human at a terminal
-confirming each action; Daxie inverts that, building for an autonomous agent to hold an
+confirming each action; Daxie inverts that, building for an autonomous AI agent to hold an
 account and move funds within operator-set limits it cannot raise.
 
 Design highlights: non-interactive flags/env/stdin, `--json` everywhere, deterministic
 exit codes, sealed spend-limit guardrails, and a one-core/two-frontends architecture so
 the CLI and the MCP server traverse the exact same wallet logic and the exact same
 guardrails. Custody in v1 is an encrypted local keystore inside one OS trust domain
-(the same uid as the agent); the project documents that boundary honestly and describes
+(the same uid as the AI agent); the project documents that boundary honestly and describes
 a v2 signer-daemon path.
 
 ## NZT-48
