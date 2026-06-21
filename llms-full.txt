@@ -23,21 +23,26 @@ contract — newline-delimited JSON (JSONL) on standard output — so they pipe 
 cleanly. stdout carries the data stream; stderr carries human-readable diagnostics, so
 the two never mix.
 
-The suite is five CLIs that share one configuration namespace:
+The suite is nine CLIs that share one configuration namespace — two producers and a
+growing set of sinks:
 
 - `evm-stream` — live EVM activity monitoring (contract events and native ETH transfers) emitted as JSONL.
 - `evm-balance` — balance and contract-state polling emitted as JSONL.
 - `evm-sink-kafka` — publish each record to Kafka topics, at-least-once.
 - `evm-sink-webhook` — forward each record over HTTP, at-least-once, with optional filters.
 - `evm-sink-file` — append each record to a rotating local file, at-least-once, with optional gzip compression and filters.
+- `evm-sink-postgres` — insert each record into a PostgreSQL table; idempotent (`ON CONFLICT (dedup_key) DO NOTHING`), so at-least-once is effectively exactly-once in the table.
+- `evm-sink-redis` — append each record to a Redis Stream (`XADD`), at-least-once; idempotent by default (a dedup-gated append keyed on `dedup_key`), with optional `MAXLEN` trimming.
+- `evm-sink-aws-sqs` — send each record to an AWS SQS queue, at-least-once, FIFO-aware (credentials from the AWS default chain).
+- `evm-sink-aws-sns` — publish each record to an AWS SNS topic, at-least-once, FIFO-aware.
 
-Producers (`evm-stream`, `evm-balance`) emit records; sinks (`evm-sink-kafka`,
-`evm-sink-webhook`, `evm-sink-file`) consume them. The shape is always the same: a
+Producers (`evm-stream`, `evm-balance`) emit records; any of the sinks above consume
+them. The shape is always the same: a
 producer writes JSONL to stdout and a sink reads it from stdin, for example
 `evm-stream run -c chain.toml | evm-sink-kafka run -c chain.toml`. Installation is one
 command for the whole suite via a Homebrew cask (`brew install --cask
 daxchain-io/tap/evm-tools`) or a cosign-verified install script. A multi-stage
-Dockerfile builds an Alpine image containing all five binaries.
+Dockerfile builds an Alpine image containing all nine binaries.
 
 ## Daxie
 
