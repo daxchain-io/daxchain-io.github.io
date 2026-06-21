@@ -209,9 +209,7 @@
 
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.78fr);
-        gap: clamp(30px, 7vw, 82px);
-        align-items: end;
+        grid-template-columns: 1fr;
       }
 
       .kicker {
@@ -236,76 +234,11 @@
       }
 
       .intro {
-        max-width: 590px;
+        max-width: 640px;
         margin: 28px 0 0;
         color: var(--muted);
         font-size: clamp(1.05rem, 2vw, 1.25rem);
         line-height: 1.7;
-      }
-
-      .lab-card {
-        position: relative;
-        min-height: 410px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: linear-gradient(180deg, rgba(15, 20, 17, 0.78), rgba(5, 6, 7, 0.72));
-        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
-        overflow: hidden;
-      }
-
-      .lab-card::before {
-        position: absolute;
-        inset: 28px;
-        border: 1px solid rgba(140, 255, 153, 0.18);
-        border-radius: 8px;
-        content: "";
-      }
-
-      .node {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--green);
-        box-shadow: 0 0 26px rgba(140, 255, 153, 0.8);
-      }
-
-      .node.one {
-        top: 28%;
-        left: 24%;
-      }
-
-      .node.two {
-        right: 25%;
-        bottom: 30%;
-        background: var(--blue);
-        box-shadow: 0 0 26px rgba(98, 215, 255, 0.72);
-      }
-
-      .trace {
-        position: absolute;
-        top: 35%;
-        left: 27%;
-        width: 47%;
-        height: 1px;
-        background: linear-gradient(90deg, var(--green), var(--blue));
-        transform: rotate(31deg);
-        transform-origin: left center;
-      }
-
-      .lab-label {
-        position: absolute;
-        left: 28px;
-        right: 28px;
-        bottom: 26px;
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        color: var(--quiet);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 800;
-        text-transform: uppercase;
       }
 
       .projects {
@@ -436,15 +369,6 @@
       }
 
       @media (max-width: 880px) {
-        .hero {
-          grid-template-columns: 1fr;
-          align-items: start;
-        }
-
-        .lab-card {
-          min-height: 260px;
-        }
-
         .projects {
           grid-template-columns: 1fr;
         }
@@ -471,10 +395,6 @@
 
         .github-org {
           width: 100%;
-        }
-
-        .lab-card {
-          min-height: 220px;
         }
 
         .project {
@@ -508,16 +428,6 @@
                 Daxchain is a small lab for practical Ethereum tooling and strange
                 token experiments — four public projects are on the bench right now.
               </p>
-            </div>
-
-            <div class="lab-card" aria-hidden="true">
-              <span class="node one"></span>
-              <span class="trace"></span>
-              <span class="node two"></span>
-              <div class="lab-label">
-                <span>0x lab</span>
-                <span>public repos</span>
-              </div>
             </div>
           </div>
 
