@@ -77,3 +77,20 @@ It is deployed on Ethereum Mainnet and Sepolia at
 `0x30a580e9fcbdec9784122963cc3762afba57f10d` (these are the canonical deployments; no
 additional canonical deployments are planned). Deployment receipts, ABI, and explorer
 links live in the repository's `deployments/` directory.
+
+## Blockchain Exporter
+
+Repository: https://github.com/daxchain-io/blockchain-exporter
+Language: Python
+Status: Deprecated (maintenance only)
+
+A Prometheus exporter for blockchain monitoring — a FastAPI service (Python 3.11) that
+polls Ethereum-compatible chains and exposes metrics in Prometheus format, with health
+endpoints for Kubernetes probes and a Helm chart and Docker image for deployment.
+
+This project is deprecated and in maintenance mode. EVM-native tooling has matured to
+cover its job more directly, so active development has moved to EVM Tools
+(https://github.com/daxchain-io/evm-tools). The repository stays available as a
+reference and for existing deployments; maintenance is limited to security and
+dependency updates — now handled by light, AI-assisted upkeep — and no new features are
+planned. For new work, start with EVM Tools.
