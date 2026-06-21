@@ -322,7 +322,7 @@
         padding: clamp(22px, 4vw, 34px);
         background: var(--panel);
         text-decoration: none;
-        transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+        transition: border-color 160ms ease, background 160ms ease, transform 160ms ease, opacity 160ms ease;
       }
 
       .project:hover {
@@ -391,6 +391,25 @@
         letter-spacing: 0.12em;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.42);
         pointer-events: none;
+      }
+
+      .ribbon.muted {
+        background: linear-gradient(180deg, #d9b35c, #c0913a);
+        color: #2a1e05;
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+      }
+
+      .project.archived {
+        opacity: 0.66;
+      }
+
+      .project.archived:hover {
+        opacity: 1;
+      }
+
+      .project.archived .project-link span:last-child {
+        color: var(--quiet);
       }
 
       footer {
@@ -484,7 +503,7 @@
               <h1 id="hero-title">On-chain tools.</h1>
               <p class="intro">
                 Daxchain is a small lab for practical Ethereum tooling and strange
-                token experiments — three public projects are on the bench right now.
+                token experiments — four public projects are on the bench right now.
               </p>
             </div>
 
@@ -542,6 +561,23 @@
               </span>
               <span class="project-link">
                 <span>github.com/daxchain-io/nzt48</span>
+                <span>open repo -&gt;</span>
+              </span>
+            </a>
+
+            <a class="project archived" href="https://github.com/daxchain-io/blockchain-exporter">
+              <span class="ribbon muted" aria-hidden="true">DEPRECATED</span>
+              <span>
+                <h2>Blockchain Exporter</h2>
+                <p>
+                  A Prometheus exporter that polls EVM chains and exposes their
+                  metrics. Now retired to light, AI-assisted maintenance — still
+                  here for existing setups, but for new work we'd point you to
+                  EVM Tools instead.
+                </p>
+              </span>
+              <span class="project-link">
+                <span>github.com/daxchain-io/blockchain-exporter</span>
                 <span>open repo -&gt;</span>
               </span>
             </a>
