@@ -52,7 +52,7 @@
         {
           "@type": "SoftwareSourceCode",
           "name": "EVM Tools",
-          "description": "A suite of composable command-line tools for observing EVM chains: producers emit newline-delimited JSON, sinks forward it to Kafka, webhooks, or rotating files.",
+          "description": "A suite of composable command-line tools for observing EVM chains: producers emit newline-delimited JSON, and pluggable sinks forward it to any downstream system.",
           "codeRepository": "https://github.com/daxchain-io/evm-tools",
           "programmingLanguage": "Go",
           "author": { "@id": "https://daxchain.io/#org" }
@@ -500,8 +500,8 @@
                 <h2>EVM Tools</h2>
                 <p>
                   A suite of composable CLIs that stream EVM chain activity as
-                  newline-delimited JSON, then pipe it straight into Kafka,
-                  webhooks, or rotating files.
+                  newline-delimited JSON, then pipe it into any downstream
+                  system through a growing set of pluggable sinks.
                 </p>
               </span>
               <span class="project-link">
