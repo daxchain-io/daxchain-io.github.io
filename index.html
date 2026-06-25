@@ -280,6 +280,46 @@
         line-height: 1.62;
       }
 
+      .project .quip {
+        margin: 0 0 12px;
+        color: var(--quiet);
+        font-style: italic;
+      }
+
+      .project-foot {
+        display: grid;
+        gap: 16px;
+      }
+
+      .nets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .net {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 11px 4px 9px;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+      }
+
+      .net::before {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 7px rgba(140, 255, 153, 0.65);
+        content: "";
+      }
+
       .project-link {
         display: flex;
         align-items: center;
@@ -486,15 +526,22 @@
               <span class="ribbon" aria-hidden="true">ERC-20</span>
               <span>
                 <h2>NZT-48</h2>
+                <p class="quip">Another ERC-20 from the boys in the kitchen.</p>
                 <p>
                   An experimental ERC-20 where every untouched address already
                   shows a balance — a toy coin for poking at what wallets,
                   indexers, and contracts assume.
                 </p>
               </span>
-              <span class="project-link">
-                <span>github.com/daxchain-io/nzt48</span>
-                <span>open repo -&gt;</span>
+              <span class="project-foot">
+                <span class="nets">
+                  <span class="net">Mainnet</span>
+                  <span class="net">Sepolia</span>
+                </span>
+                <span class="project-link">
+                  <span>github.com/daxchain-io/nzt48</span>
+                  <span>open repo -&gt;</span>
+                </span>
               </span>
             </a>
 
