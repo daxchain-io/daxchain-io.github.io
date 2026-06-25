@@ -61,6 +61,24 @@ guardrails. Custody in v1 is an encrypted local keystore inside one OS trust dom
 (the same uid as the AI agent); the project documents that boundary honestly and describes
 a v2 signer-daemon path.
 
+## Daxib
+
+Repository: https://github.com/daxchain-io/daxib
+Language: Go
+Status: Planning / pre-alpha (nothing built yet)
+
+The Bitcoin wallet for AI agents — an agent-first Bitcoin CLI wallet with a built-in MCP
+(Model Context Protocol) server, and the Bitcoin sibling of Daxie. It carries the same
+security spine as Daxie — two passphrases, an Ed25519-sealed spend policy an AI agent
+cannot raise, and a single signing chokepoint — re-grounded on Bitcoin's UTXO model.
+Most Bitcoin tooling assumes a human signing each spend; Daxib instead lets an
+autonomous AI agent hold a wallet and move sats within operator-set limits it cannot
+raise.
+
+Status is planning / pre-alpha: nothing is built yet and the design is being mapped in
+the repository's docs. The CLI surface, JSON schemas, and security model are proposed,
+not frozen. For the shipping Ethereum equivalent, see Daxie.
+
 ## NZT-48
 
 Repository: https://github.com/daxchain-io/nzt48

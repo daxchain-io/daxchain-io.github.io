@@ -6,7 +6,7 @@
     <title>Daxchain | EVM Tools, Daxie and NZT-48</title>
     <meta
       name="description"
-      content="Daxchain is a blockchain lab building practical Ethereum tools: EVM Tools, the AI-agent Daxie wallet, the NZT-48 token, and the deprecated Blockchain Exporter."
+      content="Daxchain is a blockchain lab building agent-first crypto wallets (Daxie, Daxib), EVM Tools, the NZT-48 token, and the deprecated Blockchain Exporter."
     >
     <link rel="canonical" href="https://daxchain.io/">
     <link rel="icon" href="/logo.png" type="image/png" sizes="any">
@@ -16,7 +16,7 @@
     <meta property="og:title" content="Daxchain | EVM Tools, Daxie and NZT-48">
     <meta
       property="og:description"
-      content="A small blockchain lab building practical Ethereum tooling — EVM Tools, the Daxie wallet for AI agents, the NZT-48 token experiment, and the deprecated Blockchain Exporter."
+      content="A small blockchain lab building agent-first crypto tooling — the Daxie (Ethereum) and Daxib (Bitcoin) wallets, EVM Tools, the NZT-48 token, and the deprecated Blockchain Exporter."
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://daxchain.io/">
@@ -24,10 +24,10 @@
     <meta property="og:image" content="https://daxchain.io/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Daxchain — a blockchain lab building EVM Tools, Daxie, NZT-48, and the deprecated Blockchain Exporter.">
+    <meta property="og:image:alt" content="Daxchain — a blockchain lab building the Daxie and Daxib wallets, EVM Tools, NZT-48, and the deprecated Blockchain Exporter.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Daxchain | EVM Tools, Daxie and NZT-48">
-    <meta name="twitter:description" content="A small blockchain lab building practical Ethereum tooling — EVM Tools, the Daxie wallet for AI agents, the NZT-48 token experiment, and the deprecated Blockchain Exporter.">
+    <meta name="twitter:description" content="A small blockchain lab building agent-first crypto tooling — the Daxie (Ethereum) and Daxib (Bitcoin) wallets, EVM Tools, the NZT-48 token, and the deprecated Blockchain Exporter.">
     <meta name="twitter:image" content="https://daxchain.io/og-image.png">
     <script type="application/ld+json">
     {
@@ -62,6 +62,15 @@
           "name": "Daxie",
           "description": "An Ethereum wallet for AI agents: local custody, JSON-first command-line workflows, MCP support, and policy guardrails for automated spend.",
           "codeRepository": "https://github.com/daxchain-io/daxie",
+          "author": { "@id": "https://daxchain.io/#org" }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "Daxib",
+          "description": "An agent-first Bitcoin CLI wallet (the Bitcoin sibling of Daxie) with a built-in MCP server, local custody, and a spend policy an AI agent can't raise. Status: planning / pre-alpha.",
+          "codeRepository": "https://github.com/daxchain-io/daxib",
+          "programmingLanguage": "Go",
+          "creativeWorkStatus": "Pre-alpha",
           "author": { "@id": "https://daxchain.io/#org" }
         },
         {
@@ -300,6 +309,10 @@
         color: var(--yellow);
       }
 
+      .project.btc .project-link span:last-child {
+        color: #f7931a;
+      }
+
       .ribbon {
         position: absolute;
         top: 27px;
@@ -321,6 +334,11 @@
       .ribbon.muted {
         background: linear-gradient(180deg, #d9b35c, #c0913a);
         color: #2a1e05;
+      }
+
+      .ribbon.soon {
+        background: linear-gradient(180deg, #f7a83a, #f7931a);
+        color: #2a1402;
       }
 
       .project.archived {
@@ -412,7 +430,7 @@
               <h1 id="hero-title">Small lab.<br>Sharp tools.</h1>
               <p class="intro">
                 Daxchain builds practical Ethereum tooling and strange token
-                experiments — four public projects are on the bench right now.
+                experiments — five public projects are on the bench right now.
               </p>
             </div>
           </div>
@@ -429,6 +447,22 @@
               </span>
               <span class="project-link">
                 <span>github.com/daxchain-io/daxie</span>
+                <span>open repo -&gt;</span>
+              </span>
+            </a>
+
+            <a class="project btc" href="https://github.com/daxchain-io/daxib">
+              <span class="ribbon soon" aria-hidden="true">PRE-ALPHA</span>
+              <span>
+                <h2>Daxib</h2>
+                <p>
+                  The Bitcoin sibling of Daxie — an AI-agent Bitcoin wallet with
+                  local custody, a built-in MCP server, and spend guardrails an
+                  AI agent can't raise. Currently in design.
+                </p>
+              </span>
+              <span class="project-link">
+                <span>github.com/daxchain-io/daxib</span>
                 <span>open repo -&gt;</span>
               </span>
             </a>
