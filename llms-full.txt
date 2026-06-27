@@ -66,7 +66,7 @@ a v2 signer-daemon path.
 
 Repository: https://github.com/daxchain-io/daxib
 Language: Go
-Status: Planning / pre-alpha (nothing built yet)
+Status: Released — v0.1.0 (alpha)
 
 The Bitcoin wallet for AI agents — an agent-first Bitcoin CLI wallet with a built-in MCP
 (Model Context Protocol) server, and the Bitcoin sibling of Daxie. It carries the same
@@ -76,9 +76,9 @@ Most Bitcoin tooling assumes a human signing each spend; Daxib instead lets an
 autonomous AI agent hold a wallet and move sats within operator-set limits it cannot
 raise.
 
-Status is planning / pre-alpha: nothing is built yet and the design is being mapped in
-the repository's docs. The CLI surface, JSON schemas, and security model are proposed,
-not frozen. For the shipping Ethereum equivalent, see Daxie.
+Status is alpha: the first release (v0.1.0) is published and Homebrew-installable. The
+CLI surface, JSON schemas, and security model may still change before v1. For the more
+mature Ethereum equivalent, see Daxie (v1, released).
 
 ## NZT-48
 
