@@ -62,6 +62,8 @@
           "name": "Daxie",
           "description": "An Ethereum wallet for AI agents: local custody, JSON-first command-line workflows, MCP support, and policy guardrails for automated spend.",
           "codeRepository": "https://github.com/daxchain-io/daxie",
+          "programmingLanguage": "Go",
+          "creativeWorkStatus": "Stable",
           "author": { "@id": "https://daxchain.io/#org" }
         },
         {
@@ -381,6 +383,11 @@
         color: #2a1402;
       }
 
+      .ribbon.live {
+        background: linear-gradient(180deg, var(--green), #4fd98a);
+        color: #04220f;
+      }
+
       .project.archived {
         opacity: 0.66;
       }
@@ -477,6 +484,7 @@
 
           <div class="projects" aria-label="Daxchain projects">
             <a class="project" href="https://github.com/daxchain-io/daxie">
+              <span class="ribbon live" aria-hidden="true">STABLE</span>
               <span>
                 <h2>Daxie</h2>
                 <p>

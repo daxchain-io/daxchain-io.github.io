@@ -48,6 +48,7 @@ Dockerfile builds an Alpine image containing all nine binaries.
 
 Repository: https://github.com/daxchain-io/daxie
 Language: Go
+Status: v1 — stable (released)
 
 The Ethereum wallet for AI — an AI-agent-first Ethereum CLI wallet with a built-in MCP
 (Model Context Protocol) server. Most Ethereum tooling assumes a human at a terminal
