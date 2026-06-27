@@ -2,14 +2,14 @@
 
 > Daxchain is a small blockchain lab building practical Ethereum tooling and experimental tokens. Every project is open source on GitHub under the daxchain-io organization.
 
-Daxchain favors composable, AI-agent-friendly, command-line-first tools for working with EVM chains. The website at https://daxchain.io is a single static page that links to the project repositories.
+Daxchain favors composable, command-line-first tools for AI agents working with EVM chains. The website at https://daxchain.io is a single static page that links to the project repositories.
 
 ## Projects
 
 - [EVM Tools](https://github.com/daxchain-io/evm-tools): A suite of composable command-line tools for observing EVM chains, written in Go. Producers (`evm-stream`, `evm-balance`) emit newline-delimited JSON on stdout; sinks consume that stream and forward it, at-least-once, to Kafka (`evm-sink-kafka`), HTTP webhooks (`evm-sink-webhook`), rotating local files (`evm-sink-file`), PostgreSQL (`evm-sink-postgres`), Redis Streams (`evm-sink-redis`), AWS SQS (`evm-sink-aws-sqs`), and AWS SNS (`evm-sink-aws-sns`).
 - [Daxie](https://github.com/daxchain-io/daxie): An Ethereum wallet for AI agents, with local custody, JSON-first command-line workflows, MCP support, and policy guardrails for automated spend. Status: v1, released.
-- [Daxib](https://github.com/daxchain-io/daxib): The Bitcoin sibling of Daxie — an agent-first Bitcoin CLI wallet in Go with a built-in MCP server, local custody, and an Ed25519-sealed spend policy an AI agent can't raise. Status: released (v0.1.0, alpha).
-- [NZT-48](https://github.com/daxchain-io/nzt48): An experimental ERC-20 where untouched addresses appear to have a balance, built to probe wallet, indexer, and contract assumptions.
+- [Daxib](https://github.com/daxchain-io/daxib): The Bitcoin sibling of Daxie — a Bitcoin CLI wallet for AI agents, written in Go, with a built-in MCP server, local custody, and an Ed25519-sealed spend policy an AI agent can't raise. Status: released (v0.1.0, alpha).
+- [NZT-48](https://github.com/daxchain-io/nzt48): An experimental ERC-20 where every untouched address already shows a balance — a toy coin for poking at what wallets, indexers, and contracts assume. Deployed on Ethereum Mainnet and Sepolia.
 - [Blockchain Exporter](https://github.com/daxchain-io/blockchain-exporter): **Deprecated — maintenance only.** A Python/FastAPI Prometheus exporter that polls EVM chains and exposes metrics in Prometheus format. Superseded by EVM Tools; kept on light, AI-assisted security and dependency maintenance for existing deployments. Use EVM Tools for new work.
 
 ## Links

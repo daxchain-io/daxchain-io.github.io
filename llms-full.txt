@@ -50,7 +50,7 @@ Repository: https://github.com/daxchain-io/daxie
 Language: Go
 Status: v1 — released
 
-The Ethereum wallet for AI — an AI-agent-first Ethereum CLI wallet with a built-in MCP
+The Ethereum wallet for AI agents — a CLI wallet with a built-in MCP
 (Model Context Protocol) server. Most Ethereum tooling assumes a human at a terminal
 confirming each action; Daxie inverts that, building for an autonomous AI agent to hold an
 account and move funds within operator-set limits it cannot raise.
@@ -68,7 +68,7 @@ Repository: https://github.com/daxchain-io/daxib
 Language: Go
 Status: Released — v0.1.0 (alpha)
 
-The Bitcoin wallet for AI agents — an agent-first Bitcoin CLI wallet with a built-in MCP
+The Bitcoin wallet for AI agents — a CLI wallet with a built-in MCP
 (Model Context Protocol) server, and the Bitcoin sibling of Daxie. It carries the same
 security spine as Daxie — two passphrases, an Ed25519-sealed spend policy an AI agent
 cannot raise, and a single signing chokepoint — re-grounded on Bitcoin's UTXO model.
