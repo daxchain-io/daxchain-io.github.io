@@ -1,13 +1,35 @@
 # Daxchain Website
 
-Static GitHub Pages site for `daxchain.io`.
+Static one-page site for [daxchain.io](https://daxchain.io) — the public landing page
+for the Daxchain lab and its projects. Plain HTML and inline CSS, no build step; GitHub
+Pages publishes it directly from `main`.
 
-The site highlights:
+## Projects highlighted
 
-- [EVM Tools](https://github.com/daxchain-io/evm-tools)
-- [Daxie](https://github.com/daxchain-io/daxie)
-- [Daxib](https://github.com/daxchain-io/daxib) (alpha)
-- [NZT-48](https://github.com/daxchain-io/nzt48)
-- [Blockchain Exporter](https://github.com/daxchain-io/blockchain-exporter) (deprecated, superseded by EVM Tools)
+- [EVM Tools](https://github.com/daxchain-io/evm-tools) — composable CLIs that stream EVM chain activity as JSONL into pluggable sinks.
+- [Daxie](https://github.com/daxchain-io/daxie) — Ethereum wallet for AI agents (released, v1).
+- [Daxib](https://github.com/daxchain-io/daxib) — Bitcoin wallet for AI agents (released, v0.1.0 alpha).
+- [NZT-48](https://github.com/daxchain-io/nzt48) — experimental ERC-20, live on Ethereum Mainnet and Sepolia.
+- [Blockchain Exporter](https://github.com/daxchain-io/blockchain-exporter) — Prometheus exporter (deprecated, superseded by EVM Tools).
 
-It publishes directly from this repository with no build step.
+## Layout
+
+- `index.html` — the entire site: markup, inline CSS, and JSON-LD structured data.
+- `logo.png` — the Daxchain cube mark (favicon, header, social card).
+- `og-image.png` — generated 1200×630 Open Graph / Twitter social card.
+- `robots.txt`, `sitemap.xml` — crawler directives and URL list.
+- `llms.txt`, `llms-full.txt` — [llmstxt.org](https://llmstxt.org) summaries for AI/LLM crawlers.
+- `CNAME` — custom domain (`daxchain.io`).
+- `.nojekyll` — serve files as-is, no Jekyll processing.
+
+## Deploy
+
+Commits to `main` are published automatically by GitHub Pages — no build step. Changes
+go live within a minute or two.
+
+## Conventions
+
+- Each project card carries a corner ribbon for status: **RELEASED**, **ERC-20**, or **DEPRECATED**.
+- When a project's status or description changes, keep these in sync: the card and JSON-LD
+  in `index.html`, `llms.txt`, `llms-full.txt`, this README, and the social card.
+- Copy uses the noun form **"AI agent(s)"** consistently (no hyphen).
