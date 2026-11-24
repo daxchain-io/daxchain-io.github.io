@@ -8,78 +8,7 @@
     <link rel="canonical" href="https://daxchain.io/daxtoken/0/">
     <link rel="icon" href="/logo.png" type="image/png">
     <meta name="theme-color" content="#050607">
-    <style>
-      :root {
-        color-scheme: dark;
-        --green: #8cff99;
-        --muted: #abb5a4;
-        --line: rgba(228, 255, 210, 0.18);
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        min-height: 100vh;
-        margin: 0;
-        padding: 0 clamp(1.25rem, 5vw, 5rem) 3rem;
-        color: #f6f8ed;
-        background: radial-gradient(ellipse at top left, #122118, transparent 36rem), #050607;
-      }
-
-      header, main { max-width: 66rem; margin: 0 auto; }
-      header { padding: 1.65rem 0; border-bottom: 1px solid var(--line); }
-      a { color: inherit; }
-      a:focus-visible { outline: 3px solid var(--green); outline-offset: 5px; }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 750;
-        text-decoration: none;
-      }
-
-      main {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        align-items: center;
-        gap: clamp(2rem, 6vw, 5rem);
-        padding-top: clamp(3rem, 10vh, 7rem);
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(3rem, 6.5vw, 5.5rem);
-        letter-spacing: -0.065em;
-        line-height: 1.05;
-      }
-
-      h1 span { color: var(--green); white-space: nowrap; }
-      p { max-width: 38ch; margin: 1.25rem 0 2rem; color: var(--muted); font-size: 1.2rem; line-height: 1.55; }
-      dl { margin: 0 0 2rem; }
-      dt { color: var(--muted); font-size: 0.875rem; }
-      dd { margin: 0.5rem 0 0; overflow-wrap: anywhere; }
-      code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.95rem; }
-      .metadata { color: var(--green); font-weight: 650; text-underline-offset: 0.25em; }
-
-      .artwork {
-        display: block;
-        width: 100%;
-        max-width: 25rem;
-        height: auto;
-        justify-self: end;
-        border: 1px solid var(--line);
-        border-radius: 1rem;
-        padding: 11%;
-        background: #0d100e;
-      }
-
-      @media (max-width: 44rem) {
-        main { grid-template-columns: minmax(0, 1fr); padding-top: 2.5rem; }
-        .artwork { justify-self: start; max-width: 19rem; padding: 2rem; }
-      }
-    </style>
+    <link rel="stylesheet" href="/daxtoken/token.css">
   </head>
   <body>
     <header>
@@ -97,7 +26,7 @@
         </dl>
         <a class="metadata" href="https://api.daxchain.io/tokens">View token metadata</a>
       </section>
-      <img class="artwork" src="./artwork.png" width="512" height="512"
+      <img class="artwork" src="/daxtoken/0/artwork.png" width="512" height="512"
            alt="Three yellow, orange, and red cubes inside a turquoise ring with four green nodes">
     </main>
   </body>
